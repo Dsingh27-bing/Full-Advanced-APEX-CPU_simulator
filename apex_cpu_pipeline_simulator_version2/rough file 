@@ -1,0 +1,323 @@
+//dispatch
+// if(cpu->dispatch.rs1== cpu->ex_fb.reg && cpu->dispatch.rs1_f==0)
+                // {
+                //     cpu->dispatch.rs1_value=cpu->ex_fb.value;
+                //     cpu->dispatch.rs1_f =1;
+                //     int iq_index;
+                //     for (iq_index = 0; iq_index < 24; iq_index++) 
+                //     {
+                //         printf("\n checking index = %d", iq_index);
+                //         if (cpu->IQ[iq_index].allocate_bit == -1) 
+                //         {
+                //             // Found an empty slot
+                //             if (iq_index < 24) 
+                //             {
+                //                 // Fill in the values for the IQ entry
+                //                 cpu->IQ[iq_index].allocate_bit = 1;
+                //                 cpu->IQ[iq_index].opcode = cpu->dispatch.opcode;
+                //                 cpu->IQ[iq_index].literal = -2;
+                //                 cpu->IQ[iq_index].src1_valid = 1;
+                //                 for(int i=0; i<25; i++)
+                //                 {
+                //                     if(cpu->PR[i].arc_reg == cpu->dispatch.rs1 && cpu->PR[i].valid ==1)
+                //                     {
+                //                         cpu->IQ[iq_index].src1_tag = cpu->PR[i].arc_reg;
+                //                         cpu->IQ[iq_index].src1_value= cpu->PR[i].value;
+                //                         cpu->IQ[iq_index].dest = cpu->PR[i].arc_reg;
+                //                         break;
+                //                     }
+                //                 }
+                //                 cpu->IQ[iq_index].src2_valid = -1;
+                //                 cpu->IQ[iq_index].src2_tag = -1;
+                //                 cpu->IQ[iq_index].src2_value = -1;
+                                
+                //                 cpu->IQ[iq_index].pc = cpu->dispatch.pc;
+                //                 cpu->IQ[iq_index].broadcasting_tag = -1;
+
+                //             }
+                //             cpu->dispatch.entry_made_iq= 1;
+                //             cpu->regs_writing[cpu->dispatch.rd] = 1;
+                //             break;
+
+                //         }
+                    
+                //     }
+
+                // }
+                // if(cpu->dispatch.rs1==cpu->mem_fb.reg && cpu->dispatch.rs1_f==0)
+                // {
+                //     cpu->dispatch.rs1_value=cpu->mem_fb.value;
+                //     cpu->dispatch.rs1_f =1;
+                //     int iq_index;
+                //     for (iq_index = 0; iq_index < 24; iq_index++) 
+                //     {
+                //         printf("\n checking index = %d", iq_index);
+                //         if (cpu->IQ[iq_index].allocate_bit == -1) 
+                //         {
+                //             // Found an empty slot
+                //             if (iq_index < 24) 
+                //             {
+                //                 // Fill in the values for the IQ entry
+                //                 cpu->IQ[iq_index].allocate_bit = 1;
+                //                 cpu->IQ[iq_index].opcode = cpu->dispatch.opcode;
+                //                 cpu->IQ[iq_index].literal = -2;
+                //                 cpu->IQ[iq_index].src1_valid = 1;
+                //                 for(int i=0; i<25; i++)
+                //                 {
+                //                     if(cpu->PR[i].arc_reg == cpu->dispatch.rs1 && cpu->PR[i].valid ==1)
+                //                     {
+                //                         cpu->IQ[iq_index].src1_tag = cpu->PR[i].arc_reg;
+                //                         cpu->IQ[iq_index].src1_value= cpu->PR[i].value;
+                //                         cpu->IQ[iq_index].dest = cpu->PR[i].arc_reg;
+                //                         break;
+                //                     }
+                //                 }
+                //                 cpu->IQ[iq_index].src2_valid = -1;
+                //                 cpu->IQ[iq_index].src2_tag = -1;
+                //                 cpu->IQ[iq_index].src2_value = -1;
+                                
+                //                 cpu->IQ[iq_index].pc = cpu->dispatch.pc;
+                //                 cpu->IQ[iq_index].broadcasting_tag = -1;
+
+                //             }
+                //             cpu->dispatch.entry_made_iq= 1;
+                //             cpu->regs_writing[cpu->dispatch.rd] = 1;
+                //             break;
+
+                //         }
+                    
+                //     }
+                // }
+
+                // if (cpu->dispatch.rs1_f==0 && cpu->regs_writing[cpu->dispatch.rs1] == 0){
+                // cpu->dispatch.rs1_value = cpu->regs[cpu->dispatch.rs1];
+                // cpu->dispatch.rs1_f = 1;
+                // int iq_index;
+                //     for (iq_index = 0; iq_index < 24; iq_index++) 
+                //     {
+                //         printf("\n checking index = %d", iq_index);
+                //         if (cpu->IQ[iq_index].allocate_bit == -1) 
+                //         {
+                //             // Found an empty slot
+                //             if (iq_index < 24) 
+                //             {
+                //                 // Fill in the values for the IQ entry
+                //                 cpu->IQ[iq_index].allocate_bit = 1;
+                //                 cpu->IQ[iq_index].opcode = cpu->dispatch.opcode;
+                //                 cpu->IQ[iq_index].literal = -2;
+                //                 cpu->IQ[iq_index].src1_valid = 1;
+                //                 for(int i=0; i<25; i++)
+                //                 {
+                //                     if(cpu->PR[i].arc_reg == cpu->dispatch.rs1 && cpu->PR[i].valid ==1)
+                //                     {
+                //                         cpu->IQ[iq_index].src1_tag = cpu->PR[i].arc_reg;
+                //                         cpu->IQ[iq_index].src1_value= cpu->PR[i].value;
+                //                         cpu->IQ[iq_index].dest = cpu->PR[i].arc_reg;
+                //                         break;
+                //                     }
+                //                 }
+                //                 cpu->IQ[iq_index].src2_valid = -1;
+                //                 cpu->IQ[iq_index].src2_tag = -1;
+                //                 cpu->IQ[iq_index].src2_value = -1;
+                                
+                //                 cpu->IQ[iq_index].pc = cpu->dispatch.pc;
+                //                 cpu->IQ[iq_index].broadcasting_tag = -1;
+
+                //             }
+                //             cpu->dispatch.entry_made_iq= 1;
+                //             cpu->regs_writing[cpu->dispatch.rd] = 1;
+                //             break;
+
+                //         }
+                    
+                //     }
+                // }
+                // // ---------------- rs1 done by now
+                // if( cpu->dispatch.rs2== cpu->ex_fb.reg && cpu->dispatch.rs2_f==0)
+                // {
+                //     cpu->dispatch.rs2_value=cpu->ex_fb.value;
+                //     cpu->dispatch.rs2_f =1;
+                //     int iq_index;
+                //     for (iq_index = 0; iq_index < 24; iq_index++) 
+                //     {
+                //         printf("\n checking index = %d", iq_index);
+                //         if (cpu->IQ[iq_index].allocate_bit == -1) 
+                //         {
+                //             // Found an empty slot
+                //             if (iq_index < 24) 
+                //             {
+                //                 // Fill in the values for the IQ entry
+                //                 cpu->IQ[iq_index].allocate_bit = 1;
+                //                 cpu->IQ[iq_index].opcode = cpu->dispatch.opcode;
+                //                 cpu->IQ[iq_index].literal = -2;
+                //                 cpu->IQ[iq_index].src2_valid = 1;
+                //                 for(int i=0; i<25; i++)
+                //                 {
+                //                     if(cpu->PR[i].arc_reg == cpu->dispatch.rs2 && cpu->PR[i].valid ==1)
+                //                     {
+                //                         cpu->IQ[iq_index].src2_tag = cpu->PR[i].arc_reg;
+                //                         cpu->IQ[iq_index].src2_value= cpu->PR[i].value;
+                //                         cpu->IQ[iq_index].dest = cpu->PR[i].arc_reg;
+                //                         break;
+                //                     }
+                //                 }
+                //                 cpu->IQ[iq_index].src1_valid = -1;
+                //                 cpu->IQ[iq_index].src1_tag = -1;
+                //                 cpu->IQ[iq_index].src1_value = -1;
+                                
+                //                 cpu->IQ[iq_index].pc = cpu->dispatch.pc;
+                //                 cpu->IQ[iq_index].broadcasting_tag = -1;
+
+                //             }
+                //             cpu->dispatch.entry_made_iq= 1;
+                //             cpu->regs_writing[cpu->dispatch.rd] = 1;
+                //             break;
+
+                //         }
+                    
+                //     }
+
+                // }
+                // if(cpu->regs_writing[cpu->dispatch.rs2]==1 && cpu->dispatch.rs2== cpu->mem_fb.reg && cpu->dispatch.rs2_f==0 )
+                // {
+                //     cpu->dispatch.rs2_value=cpu->mem_fb.value;
+                //     cpu->dispatch.rs2_f =1;
+                //     int iq_index;
+                //     for (iq_index = 0; iq_index < 24; iq_index++) 
+                //     {
+                //         printf("\n checking index = %d", iq_index);
+                //         if (cpu->IQ[iq_index].allocate_bit == -1) 
+                //         {
+                //             // Found an empty slot
+                //             if (iq_index < 24) 
+                //             {
+                //                 // Fill in the values for the IQ entry
+                //                 cpu->IQ[iq_index].allocate_bit = 1;
+                //                 cpu->IQ[iq_index].opcode = cpu->dispatch.opcode;
+                //                 cpu->IQ[iq_index].literal = -2;
+                //                 cpu->IQ[iq_index].src2_valid = 1;
+                //                 for(int i=0; i<25; i++)
+                //                 {
+                //                     if(cpu->PR[i].arc_reg == cpu->dispatch.rs2 && cpu->PR[i].valid ==1)
+                //                     {
+                //                         cpu->IQ[iq_index].src2_tag = cpu->PR[i].arc_reg;
+                //                         cpu->IQ[iq_index].src2_value= cpu->PR[i].value;
+                //                         cpu->IQ[iq_index].dest = cpu->PR[i].arc_reg;
+                //                         break;
+                //                     }
+                //                 }
+                //                 cpu->IQ[iq_index].src1_valid = -1;
+                //                 cpu->IQ[iq_index].src1_tag = -1;
+                //                 cpu->IQ[iq_index].src1_value = -1;
+                                
+                //                 cpu->IQ[iq_index].pc = cpu->dispatch.pc;
+                //                 cpu->IQ[iq_index].broadcasting_tag = -1;
+
+                //             }
+                //             cpu->dispatch.entry_made_iq= 1;
+                //             cpu->regs_writing[cpu->dispatch.rd] = 1;
+                //             break;
+
+                //         }
+                    
+                //     }
+
+                // }
+                // if(cpu->regs_writing[cpu->dispatch.rs2] ==0 && cpu->dispatch.rs2_f==0)
+                // {
+                //     cpu->dispatch.rs2_value = cpu->regs[cpu->dispatch.rs2];
+                //     cpu->dispatch.rs2_f = 1;
+                //     int iq_index;
+                //     for (iq_index = 0; iq_index < 24; iq_index++) 
+                //     {
+                //         printf("\n checking index = %d", iq_index);
+                //         if (cpu->IQ[iq_index].allocate_bit == -1) 
+                //         {
+                //             // Found an empty slot
+                //             if (iq_index < 24) 
+                //             {
+                //                 // Fill in the values for the IQ entry
+                //                 cpu->IQ[iq_index].allocate_bit = 1;
+                //                 cpu->IQ[iq_index].opcode = cpu->dispatch.opcode;
+                //                 cpu->IQ[iq_index].literal = -2;
+                //                 cpu->IQ[iq_index].src2_valid = 1;
+                //                 for(int i=0; i<25; i++)
+                //                 {
+                //                     if(cpu->PR[i].arc_reg == cpu->dispatch.rs2 && cpu->PR[i].valid ==1)
+                //                     {
+                //                         cpu->IQ[iq_index].src2_tag = cpu->PR[i].arc_reg;
+                //                         cpu->IQ[iq_index].src2_value= cpu->PR[i].value;
+                //                         cpu->IQ[iq_index].dest = cpu->PR[i].arc_reg;
+                //                         break;
+                //                     }
+                //                 }
+                //                 cpu->IQ[iq_index].src1_valid = -1;
+                //                 cpu->IQ[iq_index].src1_tag = -1;
+                //                 cpu->IQ[iq_index].src1_value = -1;
+                                
+                //                 cpu->IQ[iq_index].pc = cpu->dispatch.pc;
+                //                 cpu->IQ[iq_index].broadcasting_tag = -1;
+
+                //             }
+                //             cpu->dispatch.entry_made_iq= 1;
+                //             cpu->regs_writing[cpu->dispatch.rd] = 1;
+                //             break;
+
+                //         }
+                    
+                //     }
+
+                // }
+
+                // if (cpu->dispatch.rs1_f==1 && cpu->dispatch.rs2_f==1)
+                // {
+                //     cpu->regs_writing[cpu->dispatch.rd] = 1;
+                //     cpu->dispatch.stalled = 0;
+                //     int iq_index;
+                //     for (iq_index = 0; iq_index < 24; iq_index++) 
+                //     {
+                //         printf("\n checking index = %d", iq_index);
+                //         if (cpu->IQ[iq_index].allocate_bit == -1) 
+                //         {
+                //             // Found an empty slot
+                //             if (iq_index < 24) 
+                //             {
+                //                 // Fill in the values for the IQ entry
+                //                 cpu->IQ[iq_index].allocate_bit = 1;
+                //                 cpu->IQ[iq_index].opcode = cpu->dispatch.opcode;
+                //                 cpu->IQ[iq_index].literal = -2;
+                //                 cpu->IQ[iq_index].src1_valid = 1;
+                //                 for(int i=0; i<25; i++)
+                //                 {
+                //                     if(cpu->PR[i].arc_reg == cpu->dispatch.rs1 && cpu->PR[i].valid ==1)
+                //                     {
+                //                         cpu->IQ[iq_index].src1_tag = cpu->PR[i].arc_reg;
+                //                         cpu->IQ[iq_index].src1_value= cpu->PR[i].value;
+                //                         break;
+                //                     }
+                //                 }
+                //                 cpu->IQ[iq_index].src2_valid = 1;
+                //                 for(int i=0; i<25; i++)
+                //                 {
+                //                     if(cpu->PR[i].arc_reg == cpu->dispatch.rs2 && cpu->PR[i].valid ==1)
+                //                     {
+                //                         cpu->IQ[iq_index].src2_tag = cpu->PR[i].arc_reg;
+                //                         cpu->IQ[iq_index].src2_value= cpu->PR[i].value;
+                //                         cpu->IQ[iq_index].dest = cpu->PR[i].arc_reg;
+                //                         break;
+                //                     }
+                //                 }
+                                
+                //                 cpu->IQ[iq_index].pc = cpu->dispatch.pc;
+                //                 cpu->IQ[iq_index].broadcasting_tag = -1;
+
+                //             }
+                //             cpu->dispatch.entry_made_iq= 1;
+                //             cpu->regs_writing[cpu->dispatch.rd] = 1;
+                //             break;
+
+                //         }
+                    
+                //     }
+                           
+                // }
